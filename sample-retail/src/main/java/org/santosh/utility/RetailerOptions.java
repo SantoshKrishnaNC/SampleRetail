@@ -36,6 +36,9 @@ public class RetailerOptions {
 	public static CommandLine getCommandLine() {
 		return commandLine;
 	}
+	
+	// private constructor so that we cannot create objects.
+	private RetailerOptions() {}
 
 	/**
 	 * Creates the options needed by command line interface

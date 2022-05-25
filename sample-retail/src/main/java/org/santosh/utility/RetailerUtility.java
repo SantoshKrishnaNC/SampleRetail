@@ -16,7 +16,10 @@ import org.slf4j.LoggerFactory;
  */
 public class RetailerUtility {
 	
-	private static Logger LOGGER =  (Logger) LoggerFactory.getLogger(RetailerUtility.class.getName());
+	private static final Logger LOGGER = LoggerFactory.getLogger(RetailerUtility.class.getName());
+	
+	//Empty Constructor to not create an instance.
+	private RetailerUtility() {}
 
 	/**
 	 * This method is to take inputs from command line and populate the BillDetails data object 
