@@ -6,10 +6,12 @@ import org.santosh.exception.RetailerBillAmountNotFoundException;
 
 public class RetailerExitCodes {
 
-	public static int CLI_EXCEPTION = 1;
-	public static int CLI_MISSING_OPTION_EXCEPTION = 2;
-	public static int NEGATIVE_AMOUNT_EXCEPTION = 3;
-	public static int BILL_AMOUNT_NOT_PROVIDED_EXCEPTION = 4;
+	public static final int CLI_EXCEPTION = 1;
+	public static final int CLI_MISSING_OPTION_EXCEPTION = 2;
+	public static final int NEGATIVE_AMOUNT_EXCEPTION = 3;
+	public static final int BILL_AMOUNT_NOT_PROVIDED_EXCEPTION = 4;
+	
+	private RetailerExitCodes() {}
 	
 	//Return the error code and message
 	public static int getExceptionCode(Exception e) {

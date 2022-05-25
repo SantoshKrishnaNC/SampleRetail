@@ -4,6 +4,8 @@ import org.apache.commons.cli.CommandLine;
 import org.santosh.data.BillDetails;
 import org.santosh.exception.BillAmountNotAcceptedException;
 import org.santosh.exception.RetailerBillAmountNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class is to handle the discounts on the bill amount
@@ -13,6 +15,8 @@ import org.santosh.exception.RetailerBillAmountNotFoundException;
  *
  */
 public class RetailerUtility {
+	
+	private static Logger LOGGER =  (Logger) LoggerFactory.getLogger(RetailerUtility.class.getName());
 
 	/**
 	 * This method is to take inputs from command line and populate the BillDetails data object 
@@ -27,6 +31,7 @@ public class RetailerUtility {
 		if (commandLine.hasOption("ba")) {
 			billDetails.setBillAmount(Double.parseDouble(commandLine.getOptionValue("ba")));
 		} else {
+			LOGGER.error("Bill amount cannot be empty");
 			throw new RetailerBillAmountNotFoundException("Bill amount cannot be empty");
 		}
 		if (commandLine.hasOption("em")) {
@@ -53,6 +58,7 @@ public class RetailerUtility {
 			billDetails.setGroceriesAmount(0);
 		}
 		if(billDetails.getBillAmount()<0 || billDetails.getGroceriesAmount()<0) {
+			LOGGER.error("Either bill amount or groceries amount is less than 0, please check.");
 			throw new BillAmountNotAcceptedException("Check either bill amount or the grocery amount. They should be greater than 0.");
 		}
 	}
@@ -85,7 +91,7 @@ public class RetailerUtility {
 		billAmount = billDetails.getBillAmount();
 		if (discountPercentage == 0) {
 			if (billAmount >= 100) {
-				discountAmount = ((int) billAmount / 100) * 5;
+				discountAmount = ((double) billAmount / 100) * 5;
 				totalAmountPayable = billAmount - discountAmount;
 			}
 		} else {
