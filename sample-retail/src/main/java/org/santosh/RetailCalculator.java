@@ -2,6 +2,8 @@ package org.santosh;
 
 import org.apache.commons.cli.CommandLine;
 import org.santosh.data.BillDetails;
+import org.santosh.exception.BillAmountNotAcceptedException;
+import org.santosh.exception.RetailerBillAmountNotFoundException;
 import org.santosh.utility.RetailerExitCodes;
 import org.santosh.utility.RetailerOptions;
 import org.santosh.utility.RetailerUtility;
@@ -53,7 +55,7 @@ public class RetailCalculator implements CommandLineRunner {
 				RetailerUtility.readInput(commandLine, billDetails);
 				double totalAmountPayable = RetailerUtility.calculateDiscount(billDetails);
 				System.out.println("Total Amount Payable : " + totalAmountPayable);
-			} catch (RetailerBillAmountNotFoundException exp) { 
+			} catch (RetailerBillAmountNotFoundException |  BillAmountNotAcceptedException exp) { 
 				System.err.println("Unable to process the request, please recheck the input and retry.");
 				RetailerExitCodes.getExceptionCode(exp);
 			}

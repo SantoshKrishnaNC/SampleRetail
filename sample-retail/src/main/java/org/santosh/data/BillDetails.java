@@ -2,6 +2,12 @@ package org.santosh.data;
 
 import org.springframework.stereotype.Component;
 
+/**
+ * Class to hold values for Bill details
+ * 
+ * @author ncsan
+ *
+ */
 @Component
 public class BillDetails {
 

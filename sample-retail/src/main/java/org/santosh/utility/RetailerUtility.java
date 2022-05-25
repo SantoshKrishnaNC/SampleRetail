@@ -1,13 +1,29 @@
 package org.santosh.utility;
 
 import org.apache.commons.cli.CommandLine;
-import org.santosh.RetailerBillAmountNotFoundException;
 import org.santosh.data.BillDetails;
+import org.santosh.exception.BillAmountNotAcceptedException;
+import org.santosh.exception.RetailerBillAmountNotFoundException;
 
+/**
+ * This class is to handle the discounts on the bill amount
+ * and also to load the input into Bill Details object.
+ * 
+ * @author ncsan
+ *
+ */
 public class RetailerUtility {
 
+	/**
+	 * This method is to take inputs from command line and populate the BillDetails data object 
+	 * 
+	 * @param commandLine
+	 * @param billDetails
+	 * @throws RetailerBillAmountNotFoundException
+	 * @throws BillAmountNotAcceptedException
+	 */
 	public static void readInput(final CommandLine commandLine, final BillDetails billDetails)
-			throws RetailerBillAmountNotFoundException {
+			throws RetailerBillAmountNotFoundException, BillAmountNotAcceptedException {
 		if (commandLine.hasOption("ba")) {
 			billDetails.setBillAmount(Double.parseDouble(commandLine.getOptionValue("ba")));
 		} else {
@@ -36,9 +52,21 @@ public class RetailerUtility {
 			billDetails.setHasGroceries(false);
 			billDetails.setGroceriesAmount(0);
 		}
+		if(billDetails.getBillAmount()<0 || billDetails.getGroceriesAmount()<0) {
+			throw new BillAmountNotAcceptedException("Check either bill amount or the grocery amount. They should be greater than 0.");
+		}
 	}
 
-	public static double calculateDiscount(BillDetails billDetails) {
+	/**
+	 * This method calculates the discount based on if the customer is an 
+	 * employee or if an employee is an affiliate or if the customer is having
+	 * more than 2 years of engagement.
+	 * 
+	 * @param billDetails
+	 * @return total bill amount to be paid after discounts
+	 * @throws BillAmountNotAcceptedException
+	 */
+	public static double calculateDiscount(BillDetails billDetails) throws BillAmountNotAcceptedException {
 		double groceryAmount = 0;
 		double billAmount = 0;
 		double totalAmountPayable = 0;
@@ -62,6 +90,9 @@ public class RetailerUtility {
 			}
 		} else {
 			discountAmount = (billAmount - groceryAmount);
+			if(discountAmount < 0) {
+				throw new BillAmountNotAcceptedException("Groceries amount should be less than total bill amount");
+			}
 			totalAmountPayable = billAmount - (discountAmount * discountPercentage/100);
 		}
 		return totalAmountPayable;

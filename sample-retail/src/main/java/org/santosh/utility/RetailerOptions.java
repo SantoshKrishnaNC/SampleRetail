@@ -18,21 +18,6 @@ public class RetailerOptions {
 	private static OptionGroup typeGroup = null;
 	private static OptionGroup groceriesGroup = null;
 
-	// Used for testing purposes
-	private static ArrayList<Integer> testErrorCodes = new ArrayList<>();
-
-	public static ArrayList<Integer> getErrorCodes() {
-		return testErrorCodes;
-	}
-
-	public static void addErrorCode(int errorCode) {
-		testErrorCodes.add(errorCode);
-	}
-
-	public static void cleanErrorCodes() {
-		testErrorCodes.clear();
-	}
-
 	public static CommandLine getCommandLine() {
 		return commandLine;
 	}

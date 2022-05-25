@@ -1,4 +1,4 @@
-package org.santosh;
+package org.santosh.exception;
 
 public class RetailerBillAmountNotFoundException extends Exception {
 
