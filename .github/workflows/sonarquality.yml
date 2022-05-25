@@ -19,13 +19,13 @@ jobs:
       uses: sonarsource/sonarcloud-github-action@master
       with:
         args: >
-      -Dsonar.organization=org-santosh
-      -Dsonar.projectKey=my-projectkey
-      -Dsonar.python.coverage.reportPaths=coverage.xml
-      -Dsonar.sources=lib/
-      -Dsonar.test.exclusions=tests/**
-      -Dsonar.tests=tests/
-      -Dsonar.verbose=true
+        -Dsonar.organization=org-santosh
+        -Dsonar.projectKey=my-projectkey
+        -Dsonar.python.coverage.reportPaths=coverage.xml
+        -Dsonar.sources=lib/
+        -Dsonar.test.exclusions=tests/**
+        -Dsonar.tests=tests/
+        -Dsonar.verbose=true
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
         SONAR_TOKEN: 114ad934f88406b2f617fb5c05ec0fec582adc07
