@@ -10,6 +10,8 @@ import org.apache.commons.cli.MissingOptionException;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionGroup;
 import org.apache.commons.cli.Options;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RetailerOptions {
 	private static CommandLine commandLine = null;
@@ -20,6 +22,8 @@ public class RetailerOptions {
 
 	// Used for testing purposes
 	private static ArrayList<Integer> testErrorCodes = new ArrayList<>();
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(RetailerOptions.class.getName());
 
 	public static ArrayList<Integer> getErrorCodes() {
 		return testErrorCodes;
@@ -102,14 +106,14 @@ public class RetailerOptions {
 			commandLine = parser.parse(options, args);
 			afterParseChecks();
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			LOGGER.error("Error in parsing the parameters, message : {}", e.getMessage());
 			help(RetailerExitCodes.getExceptionCode(e));
 		}
 	}
 
 	public static void afterParseChecks() throws MissingOptionException {
 		if (commandLine.hasOption("h")) {
-			System.out.println("You passed help flag.");
+			LOGGER.info("You passed help flag.");
 			help(0);
 		} else {
 			checkRequiredOptions();
