@@ -18,6 +18,21 @@ public class RetailerOptions {
 	private static OptionGroup typeGroup = null;
 	private static OptionGroup groceriesGroup = null;
 
+	// Used for testing purposes
+	private static ArrayList<Integer> testErrorCodes = new ArrayList<>();
+
+	public static ArrayList<Integer> getErrorCodes() {
+		return testErrorCodes;
+	}
+
+	public static void addErrorCode(int errorCode) {
+		testErrorCodes.add(errorCode);
+	}
+
+	public static void cleanErrorCodes() {
+		testErrorCodes.clear();
+	}
+
 	public static CommandLine getCommandLine() {
 		return commandLine;
 	}
@@ -35,12 +50,14 @@ public class RetailerOptions {
 		options.addOptionGroup(billAmountGroup);
 		typeGroup = new OptionGroup();
 		typeGroup.addOption(new Option("em", "is_employee", false, "If the customer is an Employee, use this option."));
-		typeGroup.addOption(new Option("af", "is_affiliate", false, "If the customer is an Affiliate, use this option."));
+		typeGroup.addOption(
+				new Option("af", "is_affiliate", false, "If the customer is an Affiliate, use this option."));
 		typeGroup.addOption(new Option("ca", "customer_association", true,
 				"Customer association in years, ex: 1, 2, etc Integer values only"));
 		options.addOptionGroup(typeGroup);
-		groceriesGroup =  new OptionGroup();
-		groceriesGroup.addOption(new Option("gr", "contains_groceries", false, "If the items contains groceries, use this option."));
+		groceriesGroup = new OptionGroup();
+		groceriesGroup.addOption(
+				new Option("gr", "contains_groceries", false, "If the items contains groceries, use this option."));
 		options.addOption(new Option("gra", "groceries_amount", true, "total amount for groceries"));
 		options.addOptionGroup(groceriesGroup);
 		options.addOption(new Option("h", "help", true, "Help"));
@@ -63,7 +80,11 @@ public class RetailerOptions {
 	 * @param errorCode
 	 */
 	public static void exit(int errorCode) {
-		System.exit(errorCode);
+		boolean testMode = Boolean.getBoolean("test");
+		if (testMode)
+			addErrorCode(errorCode);
+		else
+			System.exit(errorCode);
 	}
 
 	/**

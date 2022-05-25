@@ -52,6 +52,8 @@ public class RetailCalculator implements CommandLineRunner {
 			try {
 				RetailerUtility.readInput(commandLine, billDetails);
 				double totalAmountPayable = RetailerUtility.calculateDiscount(billDetails);
+				//Will remove once the logger issues are resolved.
+				System.out.println("Total Amount Payable : " + totalAmountPayable);
 				LOGGER.info("Total Amount Payable : " + totalAmountPayable);
 			} catch (RetailerBillAmountNotFoundException |  BillAmountNotAcceptedException exp) { 
 				LOGGER.error("Unable to process the request, please recheck the input and retry.");
