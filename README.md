@@ -25,3 +25,13 @@ af - use it if the customer is an affiliate to the retaier.
 ca - use it if both the above are not the case, it takes a number of years as value to be mentioned in **integer**.  
 gr - use it to mention if the retail has groceries.  
 gra - grocery amount, needs a **double** value.  
+
+
+## Examples
+> java -jar sample-retail-0.0.1.jar -h
+
+> java -jar sample-retail-0.0.1.jar -em -gr -gra 100.0 -ba 850.0
+
+> java -jar sample-retail-0.0.1.jar -af -gr -gra 50.0 -ba 150.0
+
+> java -jar sample-retail-0.0.1.jar -ca 1 -gr -gra 200 -ba 500.0
