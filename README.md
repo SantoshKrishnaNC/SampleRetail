@@ -38,4 +38,4 @@ gra - grocery amount, needs a **double** value.
 
 
 ## UML Diagram
-Added the UML diagram under ![UML](sample-retail/src/main/resources/images/retail-uml.jpeg)
+Added the UML diagram under ![retail-uml.jpeg](https://github.com/SantoshKrishnaNC/SampleRetail/tree/master/sample-retail/src/main/resources/images/retail-uml.jpeg)
