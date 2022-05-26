@@ -1,6 +1,7 @@
 package org.santosh;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -49,7 +50,7 @@ class RetailerOptionsTests {
         String[] args = {"-h"};
         RetailerOptions.setTest(true);
         RetailerOptions.parse(args);
-        assertTrue(RetailerOptions.getErrorCodes().size() == 1);
+        assertEquals(RetailerOptions.getErrorCodes().size(), 1);
         RetailerOptions.setTest(false);
     }
     

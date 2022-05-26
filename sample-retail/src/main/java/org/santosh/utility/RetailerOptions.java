@@ -19,13 +19,12 @@ public class RetailerOptions {
 	private static Options options = null;
 	private static OptionGroup billAmountGroup = null;
 	private static OptionGroup typeGroup = null;
-	private static OptionGroup groceriesGroup = null;
 	
 	
 
 	// Used for testing purposes
 	private static boolean isTest;
-	private static List<Integer> testErrorCodes = new ArrayList<Integer>();
+	private static List<Integer> testErrorCodes = new ArrayList<>();
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RetailerOptions.class.getName());
 
@@ -66,7 +65,7 @@ public class RetailerOptions {
 		typeGroup.addOption(new Option("ca", "customer_association", true,
 				"Customer association in years, ex: 1, 2, etc Integer values only"));
 		options.addOptionGroup(typeGroup);
-		groceriesGroup = new OptionGroup();
+		OptionGroup groceriesGroup = new OptionGroup();
 		groceriesGroup.addOption(
 				new Option("gr", "contains_groceries", false, "If the items contains groceries, use this option."));
 		options.addOption(new Option("gra", "groceries_amount", true, "total amount for groceries"));
