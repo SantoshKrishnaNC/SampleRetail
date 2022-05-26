@@ -19,8 +19,11 @@ public class RetailerOptions {
 	private static OptionGroup billAmountGroup = null;
 	private static OptionGroup typeGroup = null;
 	private static OptionGroup groceriesGroup = null;
+	
+	
 
 	// Used for testing purposes
+	public static boolean isTest = false;
 	private static ArrayList<Integer> testErrorCodes = new ArrayList<>();
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RetailerOptions.class.getName());
@@ -67,7 +70,7 @@ public class RetailerOptions {
 				new Option("gr", "contains_groceries", false, "If the items contains groceries, use this option."));
 		options.addOption(new Option("gra", "groceries_amount", true, "total amount for groceries"));
 		options.addOptionGroup(groceriesGroup);
-		options.addOption(new Option("h", "help", true, "Help"));
+		options.addOption(new Option("h", "help", false, "Help"));
 		return options;
 	}
 
@@ -87,8 +90,7 @@ public class RetailerOptions {
 	 * @param errorCode
 	 */
 	public static void exit(int errorCode) {
-		boolean testMode = Boolean.getBoolean("test");
-		if (testMode)
+		if (isTest)
 			addErrorCode(errorCode);
 		else
 			System.exit(errorCode);

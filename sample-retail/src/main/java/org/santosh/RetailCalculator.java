@@ -24,7 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RetailCalculator implements CommandLineRunner {
 	
-	private static Logger LOGGER = LoggerFactory.getLogger(RetailCalculator.class.getName());
+	private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	BillDetails billDetails;
@@ -52,11 +52,9 @@ public class RetailCalculator implements CommandLineRunner {
 			try {
 				RetailerUtility.readInput(commandLine, billDetails);
 				double totalAmountPayable = RetailerUtility.calculateDiscount(billDetails);
-				//Will remove once the logger issues are resolved.
-				System.out.println("Total Amount Payable : " + totalAmountPayable);
-				LOGGER.info("Total Amount Payable : {}", totalAmountPayable);
+				LOGGER.info("Total Amount Payable : " + totalAmountPayable);
 			} catch (RetailerBillAmountNotFoundException |  BillAmountNotAcceptedException exp) { 
-				LOGGER.error("Unable to process the request, please recheck the input and retry. : {}", exp.getMessage());
+				LOGGER.error("Unable to process the request, please recheck the input and retry.");
 				RetailerExitCodes.getExceptionCode(exp);
 			}
 		} 
@@ -65,10 +63,8 @@ public class RetailCalculator implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		SpringApplication application = new SpringApplication(RetailCalculator.class);
-		application.addInitializers(new SpringLoggingInitializer());
 		application.setBannerMode(Banner.Mode.OFF);
 		application.setWebApplicationType(WebApplicationType.NONE);
-		application.setLogStartupInfo(false);
 		RetailerOptions.parse(args);
 		application.run(args);
 	}

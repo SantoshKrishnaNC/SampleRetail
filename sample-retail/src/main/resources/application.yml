@@ -1,0 +1,8 @@
+logging:
+  level:
+    root: ERROR
+    org.springframework.web: ERROR
+    org.santosh: DEBUG
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+    file: "%d %-5level [%thread] %logger : %msg%n"

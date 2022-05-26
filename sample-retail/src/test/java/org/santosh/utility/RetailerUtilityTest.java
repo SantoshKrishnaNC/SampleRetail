@@ -13,7 +13,6 @@ public class RetailerUtilityTest {
 
 	@Test
 	public void testCalculateEmployeeDiscount() throws BillAmountNotAcceptedException {
-
 		BillDetails bd = new BillDetails();
 		bd.setBillAmount(20);
 		bd.setHasGroceries(true);
