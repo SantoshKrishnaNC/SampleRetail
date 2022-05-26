@@ -60,7 +60,7 @@ public class RetailerUtility {
 			billDetails.setHasGroceries(false);
 			billDetails.setGroceriesAmount(0);
 		}
-		if(billDetails.getBillAmount()<0 || billDetails.getGroceriesAmount()<0) {
+		if (billDetails.getBillAmount()<0 || billDetails.getGroceriesAmount()<0) {
 			LOGGER.error("Either bill amount or groceries amount is less than 0, please check.");
 			throw new BillAmountNotAcceptedException("Check either bill amount or the grocery amount. They should be greater than 0.");
 		}

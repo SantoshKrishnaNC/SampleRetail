@@ -90,10 +90,11 @@ public class RetailerOptions {
 	 * @param errorCode
 	 */
 	public static void exit(int errorCode) {
-		if (isTest())
+		if (isTest()) {
 			addErrorCode(errorCode);
-		else
+		} else {
 			System.exit(errorCode);
+		}
 	}
 
 	/**
@@ -145,8 +146,9 @@ public class RetailerOptions {
 	 * @return true if options exists otherwise false
 	 */
 	public static boolean hasParsedOptions() {
-		if (commandLine == null)
+		if (commandLine == null) {
 			return false;
+		}
 		return commandLine.getOptions().length > 0;
 	}
 
