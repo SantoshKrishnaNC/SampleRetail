@@ -39,3 +39,7 @@ gra - grocery amount, needs a **double** value.
 
 ## UML Diagram
 Added the UML diagram under ![retail-uml.jpeg](https://github.com/SantoshKrishnaNC/SampleRetail/tree/master/sample-retail/src/main/resources/images/retail-uml.jpeg)
+
+
+## Code Analysis
+Ran the code using the sonarcloud workflow, here is the result from when running the workflow.![sonarqube.jpeg](https://github.com/SantoshKrishnaNC/SampleRetail/tree/master/sample-retail/src/main/resources/images/sonarqube.jpeg)
