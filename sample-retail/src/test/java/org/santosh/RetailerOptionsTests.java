@@ -50,7 +50,7 @@ class RetailerOptionsTests {
         String[] args = {"-h"};
         RetailerOptions.setTest(true);
         RetailerOptions.parse(args);
-        assertEquals(RetailerOptions.getErrorCodes().size(), 1);
+        assertEquals(1, RetailerOptions.getErrorCodes().size());
         RetailerOptions.setTest(false);
     }
     
