@@ -1,6 +1,7 @@
 package org.santosh.utility;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -23,12 +24,12 @@ public class RetailerOptions {
 	
 
 	// Used for testing purposes
-	public static boolean isTest = false;
-	private static ArrayList<Integer> testErrorCodes = new ArrayList<>();
+	private static boolean isTest;
+	private static List<Integer> testErrorCodes = new ArrayList<Integer>();
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(RetailerOptions.class.getName());
 
-	public static ArrayList<Integer> getErrorCodes() {
+	public static List<Integer> getErrorCodes() {
 		return testErrorCodes;
 	}
 
@@ -90,7 +91,7 @@ public class RetailerOptions {
 	 * @param errorCode
 	 */
 	public static void exit(int errorCode) {
-		if (isTest)
+		if (isTest())
 			addErrorCode(errorCode);
 		else
 			System.exit(errorCode);
@@ -125,7 +126,7 @@ public class RetailerOptions {
 	public static void checkRequiredOptions() throws MissingOptionException {
 		OptionGroup[] groups = { billAmountGroup, typeGroup };
 		for (OptionGroup group : groups) {
-			ArrayList<Option> groupOptions = new ArrayList<Option>(group.getOptions());
+			ArrayList<Option> groupOptions = new ArrayList<>(group.getOptions());
 			boolean groupIsGiven = false;
 			for (Option option : groupOptions) {
 				if (commandLine.hasOption(option.getOpt())) {
@@ -148,6 +149,14 @@ public class RetailerOptions {
 		if (commandLine == null)
 			return false;
 		return commandLine.getOptions().length > 0;
+	}
+
+	public static boolean isTest() {
+		return isTest;
+	}
+
+	public static void setTest(boolean isTest) {
+		RetailerOptions.isTest = isTest;
 	}
 
 }

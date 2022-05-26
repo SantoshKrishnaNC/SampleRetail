@@ -16,7 +16,10 @@ import org.slf4j.LoggerFactory;
  */
 public class RetailerUtility {
 	
-	private final static Logger LOGGER = LoggerFactory.getLogger(RetailerUtility.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(RetailerUtility.class);
+	
+	//Adding a private constructor
+	private RetailerUtility() {}
 
 	/**
 	 * This method is to take inputs from command line and populate the BillDetails data object 
@@ -91,7 +94,7 @@ public class RetailerUtility {
 		billAmount = billDetails.getBillAmount();
 		if (discountPercentage == 0) {
 			if (billAmount >= 100) {
-				discountAmount = ((double) billAmount / 100) * 5;
+				discountAmount = (billAmount / 100) * 5;
 				totalAmountPayable = billAmount - discountAmount;
 			}
 		} else {

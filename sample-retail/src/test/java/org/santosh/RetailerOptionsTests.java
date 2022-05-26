@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -14,11 +14,11 @@ import org.santosh.utility.RetailerExitCodes;
 import org.santosh.utility.RetailerOptions;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RetailerOptionsTests {
+class RetailerOptionsTests {
     private PrintStream console;
     private ByteArrayOutputStream bytes;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
     	String key = "test";
         System.setProperty(key, "true");
@@ -27,7 +27,7 @@ public class RetailerOptionsTests {
         System.setOut(new PrintStream(bytes));
     }
 
-    @After
+    @AfterEach
     public void tearDown() {
     	System.clearProperty("test");
         System.setOut(console);
@@ -35,52 +35,52 @@ public class RetailerOptionsTests {
     }	
 
     @Test
-    public void testParseEmptyOptionsFails() throws Exception {	
+    void testParseEmptyOptionsFails() throws Exception {	
         String[] args = new String[0];
-        RetailerOptions.isTest = true;
+        RetailerOptions.setTest(true);
         RetailerOptions.parse(args);
         int code = RetailerExitCodes.CLI_MISSING_OPTION_EXCEPTION;
         assertTrue(RetailerOptions.getErrorCodes().contains(code));
-        RetailerOptions.isTest = false;
+        RetailerOptions.setTest(false);
     }
 		
     @Test
-    public void testHelpOptionOnlyWorks() throws Exception {
+    void testHelpOptionOnlyWorks() throws Exception {
         String[] args = {"-h"};
-        RetailerOptions.isTest = true;
+        RetailerOptions.setTest(true);
         RetailerOptions.parse(args);
         assertTrue(RetailerOptions.getErrorCodes().size() == 1);
-        RetailerOptions.isTest = false;
+        RetailerOptions.setTest(false);
     }
     
     @Test
-    public void testMessageBillAmountMissing() throws Exception {
+    void testMessageBillAmountMissing() throws Exception {
         String[] args = {"-em", "-af"};
-        RetailerOptions.isTest = true;
+        RetailerOptions.setTest(true);
         RetailerOptions.parse(args);
-        int code = RetailerExitCodes.CLI_MISSING_OPTION_EXCEPTION;
+        int code = RetailerExitCodes.CLI_EXCEPTION;
         assertTrue(RetailerOptions.getErrorCodes().contains(code));
-        RetailerOptions.isTest = false;
+        RetailerOptions.setTest(false);
     }
     
     @Test
-    public void testContentOptionMissing() throws Exception {
+    void testContentOptionMissing() throws Exception {
         String[] args = {"-em", "-gr"};
-        RetailerOptions.isTest = true;
+        RetailerOptions.setTest(true);
         RetailerOptions.parse(args);
         int code = RetailerExitCodes.CLI_MISSING_OPTION_EXCEPTION;
         assertTrue(RetailerOptions.getErrorCodes().contains(code));
-        RetailerOptions.isTest = false;
+        RetailerOptions.setTest(false);
     }
     
     @Test
-    public void testRequiredOptionsGiven() throws Exception {
-    	RetailerOptions.isTest = true;
+    void testRequiredOptionsGiven() throws Exception {
+    	RetailerOptions.setTest(true);
         String[] args = {"-em", "-gr", "-gra", "100.0", "-ba", "1000.0"};
         RetailerOptions.parse(args);
         RetailerOptions.cleanErrorCodes();
         assertTrue(RetailerOptions.getErrorCodes().isEmpty());
-        RetailerOptions.isTest = false;
+        RetailerOptions.setTest(false);
     }
     
 }

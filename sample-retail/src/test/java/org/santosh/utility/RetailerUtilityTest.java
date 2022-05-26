@@ -9,10 +9,10 @@ import org.santosh.data.BillDetails;
 import org.santosh.exception.BillAmountNotAcceptedException;
 
 @RunWith(MockitoJUnitRunner.class)
-public class RetailerUtilityTest {
+class RetailerUtilityTest {
 
 	@Test
-	public void testCalculateEmployeeDiscount() throws BillAmountNotAcceptedException {
+	void testCalculateEmployeeDiscount() throws BillAmountNotAcceptedException {
 		BillDetails bd = new BillDetails();
 		bd.setBillAmount(20);
 		bd.setHasGroceries(true);
@@ -26,7 +26,7 @@ public class RetailerUtilityTest {
 	}
 
 	@Test
-	public void testCalculateAffiliateDiscount() throws BillAmountNotAcceptedException {
+	void testCalculateAffiliateDiscount() throws BillAmountNotAcceptedException {
 
 		BillDetails bd = new BillDetails();
 		bd.setBillAmount(20);
@@ -41,7 +41,7 @@ public class RetailerUtilityTest {
 	}
 
 	@Test
-	public void testCalculateDiscount() throws BillAmountNotAcceptedException {
+	void testCalculateDiscount() throws BillAmountNotAcceptedException {
 
 		BillDetails bd = new BillDetails();
 		bd.setBillAmount(20);
