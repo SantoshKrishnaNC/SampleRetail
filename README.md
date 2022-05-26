@@ -35,3 +35,7 @@ gra - grocery amount, needs a **double** value.
 > java -jar sample-retail-0.0.1.jar -af -gr -gra 50.0 -ba 150.0
 
 > java -jar sample-retail-0.0.1.jar -ca 1 -gr -gra 200 -ba 500.0
+
+
+## UML Diagram
+Added the UML diagram under ![UML](sample-retail/src/main/resources/images/retail-uml.jpeg)
